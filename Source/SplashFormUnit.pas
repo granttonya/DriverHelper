@@ -1,0 +1,56 @@
+unit SplashFormUnit;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls;
+
+type
+  TSplashForm = class(TForm)
+    lblStatus: TLabel;
+    ProgressBar1: TProgressBar;
+    procedure FormCreate(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+     procedure UpdateProgress(Progress: Integer; const Info: string);
+  end;
+
+var
+  SplashForm: TSplashForm;
+
+implementation
+
+{$R *.dfm}
+
+uses Unit3;
+
+
+ procedure TSplashForm.UpdateProgress(Progress: Integer; const Info: string);
+begin
+  ProgressBar1.Position := Progress;
+  lblStatus.Caption := Info;
+  Application.ProcessMessages;  // force UI update
+end;
+
+
+procedure TSplashForm.Button1Click(Sender: TObject);
+begin
+Application.CreateForm(TForm3,Form3);
+ form3.Show;
+ splashform.hide;
+end;
+
+procedure TSplashForm.FormCreate(Sender: TObject);
+begin
+   // Initialize the progress bar (0 to 100)
+  ProgressBar1.Min := 0;
+  ProgressBar1.Max := 100;
+  ProgressBar1.Position := 0;
+  lblStatus.Caption := 'Starting...';
+end;
+
+end.

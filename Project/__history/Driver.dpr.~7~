@@ -1,0 +1,18 @@
+program Driver;
+
+uses
+  Vcl.Forms,
+  Unit3 in '..\Source\Unit3.pas' {Form3},
+  Vcl.Themes,
+  Vcl.Styles,
+  SdDriverCheck in '..\Source\SdDriverCheck.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  TStyleManager.TrySetStyle('Charcoal Dark Slate');
+  Application.CreateForm(TForm3, Form3);
+  Application.Run;
+end.
